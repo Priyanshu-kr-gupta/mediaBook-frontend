@@ -4,7 +4,7 @@ function PostCard(props) {
 
   const [postUser,setPostUser]=useState({name:"",profilePhoto:"",date:""})
   const userAuthenticate=async()=>{
-    const res = await fetch("http://localhost:5000/api/post/getPostUser",{
+    const res = await fetch("https://media-book-backend.vercel.app/api/post/getPostUser",{
       method:'POST',
       headers:{
         "Content-Type": "application/json"

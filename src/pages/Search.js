@@ -10,7 +10,7 @@ export default function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5000/api/user/searchUser', {
+      const response = await fetch('https://media-book-backend.vercel.app/api/user/searchUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export default function Search() {
 
     const connect = async (con) =>{
       // console.log(con)
-      const response=await fetch("http://localhost:5000/api/user/connectUser",{
+      const response=await fetch("https://media-book-backend.vercel.app/api/user/connectUser",{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

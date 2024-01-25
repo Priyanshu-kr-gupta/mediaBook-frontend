@@ -13,7 +13,7 @@ function Login(props) {
     const handleSubmit=async (e)=>{
         e.preventDefault();
         const {email,password} = user
-        const response = await fetch("http://localhost:5000/api/auth/loginUser",{
+        const response = await fetch("https://media-book-backend.vercel.app/api/auth/loginUser",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"

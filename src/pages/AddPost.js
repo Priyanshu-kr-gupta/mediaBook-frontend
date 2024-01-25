@@ -9,7 +9,7 @@ function AddPost() {
         e.preventDefault();
      
           try {
-              const respon = await fetch("http://localhost:5000/api/post/addPost", {
+              const respon = await fetch("https://media-book-backend.vercel.app/api/post/addPost", {
                   method: "POST",
                   headers: {
                       "Content-Type": "Application/json",

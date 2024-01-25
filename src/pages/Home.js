@@ -31,7 +31,7 @@ function Home() {
   const navigate = useNavigate()
   const [post,setPost] = useState([]);
   const getAllPosts=async ()=>{
-    const getAllPosts= await fetch("http://localhost:5000/api/post/getAllPosts",{
+    const getAllPosts= await fetch("https://media-book-backend.vercel.app/api/post/getAllPosts",{
       method:"POST",
       headers:{
         "Content-Type": "Application/json",
