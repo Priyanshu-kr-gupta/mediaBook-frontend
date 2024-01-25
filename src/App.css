@@ -1,0 +1,17 @@
+.App{
+    width: 90%;
+    height: 90%;
+    /* background-color: #031837; */
+    background-color: white;
+    display: flex;
+    align-items: center;
+  box-shadow: 0 0 10px rgb(165, 165, 165), 10px 10px 15px 5px rgba(0, 0, 0, 0.151);
+}
+
+@media (max-width:1000px) {
+
+.App{
+    flex-direction: column-reverse;
+    /* align-items: flex-end; */
+}
+}

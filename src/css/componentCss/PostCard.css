@@ -1,0 +1,68 @@
+.postCard{
+    width: 60%;
+    height: 90%;
+    margin: 10px;
+    /* background-color: rgba(220, 219, 219, 0.548); */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow:  5px 5px 10px #8f8f8f,
+    -5px -5px 10px #ffffff;
+    border-radius: 20px;
+
+}
+.userDetails
+{
+    background-color: #ffffff;
+    width: 80%;
+    height: 10%;
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    padding: 2% 5% 2% 5%;
+   
+}
+.userDetails img{
+    height:100%;
+    width: 50px;
+    border-radius: 50%;
+}
+.userPost{
+    width: 90%;
+    height: 70%;
+    background-color: rgb(255, 255, 255);
+   
+
+}
+.userPost p{
+    width: 100%;
+    height: 10%;
+    font-family:Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+}
+.postImg{
+    width: 100%;
+    height: 90%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+ 
+}
+.userPost  img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    backdrop-filter: blur(10px);
+}
+.likeComment{
+    width: 90%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}

@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 function Login(props) {
     const navigate=useNavigate();
@@ -12,7 +13,7 @@ function Login(props) {
     const handleSubmit=async (e)=>{
         e.preventDefault();
         const {email,password} = user
-        const response = await fetch("https://inotebook-backend-0iif.onrender.com/api/auth/loginUser",{
+        const response = await fetch("http://localhost:5000/api/auth/loginUser",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"
@@ -22,11 +23,11 @@ function Login(props) {
         const json=await response.json()
         if(json.login){
             localStorage.setItem("auth-token",json.authToken)
+            // alert(json.msg); 
             navigate("/")
-            props.showAlert(json.msg,"success"); 
         }
         else{
-          props.showAlert(json.msg,"warning");
+          alert(json.msg,"warning");
         }
         
     }
@@ -40,12 +41,14 @@ function Login(props) {
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input name="password" type="password" value={password}  id="password" minLength={5} onChange={handleChange}/>
+            <input name="password" type="password" value={password}  id="password" onChange={handleChange}/>
           </div>
           <button type="submit" >
           Log In
           </button>
         </form>
+        <h5>Don't have a account</h5>
+      <Link to="/signup">Signup</Link>
       </div>
   )
 }

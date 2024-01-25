@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom'
 
 
 
@@ -16,7 +17,7 @@ const Signup = () => {
     const [checkOtpVerified,setCheckOtpVeified]= useState(false)
     const [profileImg,setProfileImg] = useState("");
     const [bgImg,setBgImg] = useState("");
-
+    const [loader,setLoader]=useState(false);
 
 
     const handleChangeEmail= (e) =>{
@@ -35,7 +36,8 @@ const Signup = () => {
   
   
   
-  const handleOtp=async (e)=>{
+  const handleOtp=async ()=>{
+    setLoader(true);
         const response = await fetch("http://localhost:5000/api/auth/sendOtp",{
             method:"POST",
             headers:{
@@ -46,7 +48,7 @@ const Signup = () => {
         const json=await response.json()
         if(json.status){
            setCheckotpSent(json.status);
-           
+           setLoader(false);
             // props.showAlert(json.msg,"success")
         }
         else{
@@ -54,6 +56,8 @@ const Signup = () => {
         }
     }
     const verifyOtp=async (e)=>{
+    setLoader(true);
+
       const response = await fetch("http://localhost:5000/api/auth/verifyOtp",{
           method:"POST",
           headers:{
@@ -64,6 +68,7 @@ const Signup = () => {
       const json=await response.json()
       if(json.status){
          setCheckOtpVeified(json.status);
+         setLoader(false);
          
           // props.showAlert(json.msg,"successfully verified")
       }
@@ -75,6 +80,8 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoader(true);
+
     // console.log(PostData.postImg)
     console.log(email)
     console.log(name)
@@ -166,7 +173,7 @@ const HandleImage = (e) => {
             <div >
               <label htmlFor="email">Email</label>
               <input name="email" type="email"  id="email" onChange={handleChangeEmail} required key={1}/>
-              <button style={{cursor:"pointer",border:"2px solid black"}} onClick={handleOtp}>Send Otp</button>
+              <button style={{cursor:"pointer",border:"2px solid black"}} onClick={handleOtp}>{loader?"wait...":"Send Otp"}</button>
             </div>
           
           :  
@@ -174,11 +181,12 @@ const HandleImage = (e) => {
             <div>
               <label htmlFor="otp">Enter verification code</label>
               <input name="otp" type="text"  id="otp"  required key={2} onChange={handleChangeOtp}/>
-              <button style={{cursor:"pointer",border:"2px solid black"}} onClick={verifyOtp}>continue</button>
+              <button style={{cursor:"pointer",border:"2px solid black"}} onClick={verifyOtp}>{loader?"wait...":"Continue"}</button>
             </div>
           
       }
-    
+      <h5>Already have an account</h5>
+      <Link to="/login">Login</Link>
       </div>
   )
 }
