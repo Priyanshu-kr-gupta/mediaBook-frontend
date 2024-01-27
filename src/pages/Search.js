@@ -13,7 +13,7 @@ export default function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5000/api/user/searchUser', {
+      const response = await fetch('https://media-book-backend.vercel.app/api/user/searchUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,9 +33,9 @@ export default function Search() {
 
   }, [searchedUser]); // Run the effect whenever searchedUser changes
 
-    const findSearchedUser = async () =>{
-      // console.log(con)
-      setSearchUser();
+    const findSearchedUser = async (suserid) =>{
+      console.log(suserid)
+      setSearchUser(suserid);
       setGetSearchUser(1);
       const response=await fetch("https://media-book-backend.vercel.app/api/user/getSearchedUser",{
         method: 'POST',
