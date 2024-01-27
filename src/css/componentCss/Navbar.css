@@ -6,7 +6,7 @@ nav{
     width: 10%;
     height: 100%;
     /* background-color: rgb(91, 3, 111); */
-    background-color:   #DDE1E7;
+    /* background-color:   #DDE1E7; */
     /* border-right: 2px solid white; */
     /* box-shadow: inset -3px -3px 8px #fffffff1,  
     inset 3px 3px 15px rgba(94, 104, 121, 0.692); */
@@ -21,7 +21,8 @@ nav{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    /* align-items:center; */
+    
 }
 .navMenu a{
     all: unset;
@@ -37,6 +38,7 @@ nav{
     -5px -5px 10px #ffffff; */
     transition: all ease 0.2s;
     overflow: hidden;
+    margin-left: 12%;
     }
     /* .navMenu a:hover{
         width: 90%;

@@ -25,7 +25,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/create" element={<AddPost/>}/>
-          <Route path="/search" element={<Search />}/>
+          {/* <Route path="/search" element={<Search />}/> */}
       </Routes>
 
     </div>

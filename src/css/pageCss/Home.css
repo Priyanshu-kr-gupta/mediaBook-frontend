@@ -3,7 +3,7 @@
     padding: 0;
 }
 .homePage{
-    width: 60%;
+    width: 100%;
     height: 100%;
   
      display: flex;
@@ -16,8 +16,8 @@
 .allPosts{
     overflow-y: scroll;
     overflow-x: hidden;
- width: 100%;
- height: 90%;
+ width: 60%;
+ height: 95%;
  display: flex;
  align-items: center;
  justify-content: center;
@@ -25,10 +25,26 @@
  /* box-shadow:  5px 5px 10px #8f8f8f,
  -5px -5px 10px #ffffff; */
  /* border: 10px solid transparent; */
-    
+ 
 }
+.allPosts::-webkit-scrollbar {
+    width: 2px;
+  }
+  .allPosts::-webkit-scrollbar-track {
+    background: rgba(168, 168, 168, 0.456);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #000000;
+  }
+  
+  /* Handle on hover */
+  .allPosts::-webkit-scrollbar-thumb:hover {
+    background: red;
+  }
 .stories{
     width: 90%;
     height: 15%;
     background-color: #8f8f8f;
+    position:relative fixed;
+    top: 0px;
 }

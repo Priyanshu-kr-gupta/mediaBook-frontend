@@ -17,7 +17,7 @@ function Navbar() {
     <div className='navMenu'>
       <h4>MediaBook 2.O</h4>
     <Link to="/home"     style={{backgroundColor:(location.pathname==="/home") ? "aqua" : ""} }><img src={homeIcon} alt='not found'/>Home</Link>
-    <Link to="/search"   style={{backgroundColor:(location.pathname==="/search") ? "aqua" : ""}}><img src={searchIcon} alt='not found'/>Search</Link>
+    {/* <Link to="/search"   style={{backgroundColor:(location.pathname==="/search") ? "aqua" : ""}}><img src={searchIcon} alt='not found'/>Search</Link> */}
     <Link to="/messages" style={{backgroundColor:(location.pathname==="/messages") ? "aqua" : ""}}><img src={messageIcon} alt='not found'/>Message</Link>
     <Link to="/create"   style={{backgroundColor:(location.pathname==="/create") ? "aqua" : ""}}><img src={addIcon} alt='not found'/>create</Link>
     <Link to="/profile"  style={{backgroundColor:(location.pathname==="/profile") ? "aqua" : ""}}><img src={profileIcon} alt='not found'/>Profile</Link>
