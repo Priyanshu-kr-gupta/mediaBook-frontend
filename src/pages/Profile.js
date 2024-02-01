@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import "../css/pageCss/Profile.css"
 export default function Profile() {
 
-    const backendapi="https://media-book-backend.vercel.app";
+    const backendApi="https://media-book-backend.vercel.app";
+    // const backendApi="http://localhost:5000";
 const navigate = useNavigate()
 const [user,setUser]=useState({});
 function logout()

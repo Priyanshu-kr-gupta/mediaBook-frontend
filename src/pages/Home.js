@@ -6,7 +6,8 @@ import Search from "./Search";
 
 function Home() {
 
-    const backendapi="https://media-book-backend.vercel.app";
+    const backendApi="https://media-book-backend.vercel.app";
+    // const backendApi="http://localhost:5000";
   const navigate = useNavigate()
   const [post,setPost] = useState([]);
   const getAllPosts=async ()=>{
