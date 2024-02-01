@@ -161,3 +161,9 @@
     position: relative;
     bottom: 10px;
 }
+.searchUser{
+    all: unset;
+    background-color: rgba(178, 138, 218, 0.721);
+    padding: 2px;
+    cursor: pointer;
+} 

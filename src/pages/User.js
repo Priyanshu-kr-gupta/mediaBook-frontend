@@ -1,7 +1,62 @@
-import React from 'react'
-
+import React, { useEffect,useState } from 'react'
+import { useParams } from 'react-router-dom';
 export default function User() {
+    const user=useParams();
+  const [getsearchUser,setGetSearchUser]=useState();
+  const backendApi="https://media-book-backend.vercel.app";
+  // const backendApi="http://localhost:5000";
+    useEffect(()=>{
+        findSearchedUser();
+    },[])
+    const findSearchedUser = async () =>{ 
+        const response=await fetch(`${backendApi}/api/user/getSearchedUser`,{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({id:user.userId}),
+          
+        }
+  
+        )
+        const data=await response.json();
+        setGetSearchUser(data.user)
+      }
+      const connect = async ()=>{
+        const response=await fetch(`${backendApi}/api/user/connect`,{
+          method:"POST",
+          headers:{
+            'Content-Type': 'application/json',
+            "auth-token": localStorage.getItem("auth-token")
+          },
+          body: JSON.stringify({receiver:getsearchUser.userId}),
+        })
+        const data=await response.json();
+        console.log(data)
+      }
   return (
-    <div>User</div>
+    
+    <>
+    {getsearchUser?
+    <div className='searchedUser'>
+    <div className='searchProfile'>
+    <div className='searchUserBackgroundImage'>
+      <img src={getsearchUser.bgPhoto} alt='not found'/>
+    </div>
+    <div className='searchUserProfileContainer'>
+      <div className='searchUserTopData'>
+
+          <button onClick={connect}>Connections</button>
+          <div className='searchUserProfileImg'><img src={getsearchUser.profilePhoto} alt='not found'/></div>
+          <button>Follow</button>
+      </div>
+    <h3> {getsearchUser.name}</h3>
+      
+    </div>
+  </div>
+  </div>
+:"please wait"
+    }
+    </>
   )
 }

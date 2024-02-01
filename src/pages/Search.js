@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import "../css/pageCss/Search.css"
 export default function Search() {
   const [searchedUser, setSearchedUser] = useState('');
@@ -66,38 +67,14 @@ export default function Search() {
               <h5>{user.name}</h5>
             </div>
 
-            <button className='searchUser' onClick={()=>{findSearchedUser(user._id)}}>View</button>
-
-            {/* <link className='followButton' onClick={() => {connect(user._id)} }>View</link> */}
+            {/* <button className='searchUser' onClick={()=>{findSearchedUser(user._id)}}>View</button> */}
+            <Link to={`/user/${user._id}`} className='searchUser'>View</Link>      
 
           </div>
         ))}
 
     </div>
-    {(searchUser)?
-    <div className='searchedUser'>
-     
-      <div className='searchProfile'>
-      <button className='cancelSearchUser' onClick={()=>{setSearchUser(0)}}>❌</button>
-      <div className='searchUserBackgroundImage'>
-        <img src={getsearchUser.bgPhoto} alt='not found'/>
-      </div>
-      <div className='searchUserProfileContainer'>
-        <div className='searchUserTopData'>
-
-            <button>Connections</button>
-            <div className='searchUserProfileImg'><img src={getsearchUser.profilePhoto} alt='not found'/></div>
-            <button>Follow</button>
-        </div>
-      <h3> {getsearchUser.name}</h3>
-        
-      </div>
-    </div>
-    </div>
-    :<div>
-      
-    </div>
-    }
+ 
   </>
   );
 }

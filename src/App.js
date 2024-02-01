@@ -7,7 +7,8 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import AddPost from "./pages/AddPost"
-import Search from "./pages/Search";
+// import Search from "./pages/Search";
+import User from "./pages/User";
 function App() {
 
  
@@ -25,7 +26,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/create" element={<AddPost/>}/>
-          {/* <Route path="/search" element={<Search />}/> */}
+          <Route path="/user/:userId" element={<User />}/>
       </Routes>
 
     </div>
