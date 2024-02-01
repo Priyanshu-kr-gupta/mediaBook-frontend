@@ -9,7 +9,6 @@ export default function Search() {
     setSearchedUser(e.target.value);
   };
   const backendapi="https://media-book-backend.vercel.app";
-  // const backendApi="http://localhost:5000";
 
   useEffect(() => {
     const fetchData = async () => {

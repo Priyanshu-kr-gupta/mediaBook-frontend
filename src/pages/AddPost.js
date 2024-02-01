@@ -3,7 +3,6 @@ import React,{useState} from 'react'
 
 function AddPost() {
    const backendapi="https://media-book-backend.vercel.app";
-  //  const backendApi="http://localhost:5000";
   const [caption,setCaption]=useState("")
   const [postImg,setPostImg]=useState("")
   const handleClick=async (e)=>{
