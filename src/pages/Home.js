@@ -5,10 +5,13 @@ import "../css/pageCss/Home.css"
 import Search from "./Search";
 
 function Home() {
+
+    // const backendapi="https://media-book-backend.vercel.app";
+    const backendApi="http://localhost:5000";
   const navigate = useNavigate()
   const [post,setPost] = useState([]);
   const getAllPosts=async ()=>{
-    const getAllPosts= await fetch("https://media-book-backend.vercel.app/api/post/getAllPosts",{
+    const getAllPosts= await fetch(`${backendApi}/api/post/getAllPosts`,{
       method:"POST",
       headers:{
         "Content-Type": "Application/json",

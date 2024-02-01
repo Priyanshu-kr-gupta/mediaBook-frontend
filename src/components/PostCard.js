@@ -1,10 +1,11 @@
 import React,{useEffect,useState} from 'react'
 import "../css/componentCss/PostCard.css"
 function PostCard(props) {
-
+    // const backendapi="https://media-book-backend.vercel.app";
+    const backendApi="http://localhost:5000";
   const [postUser,setPostUser]=useState({name:"",profilePhoto:"",date:""})
   const userAuthenticate=async()=>{
-    const res = await fetch("https://media-book-backend.vercel.app/api/post/getPostUser",{
+    const res = await fetch(`${backendApi}/api/post/getPostUser`,{
       method:'POST',
       headers:{
         "Content-Type": "application/json"

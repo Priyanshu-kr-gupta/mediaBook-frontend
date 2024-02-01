@@ -3,17 +3,17 @@ import "../css/pageCss/Search.css"
 export default function Search() {
   const [searchedUser, setSearchedUser] = useState('');
   const [users, setUsers] = useState([]);
-  const [searchUser,setSearchUser]=useState("");
-  const [getsearchUser,setGetSearchUser]=useState(0);
+  const [searchUser,setSearchUser]=useState(0);
+  const [getsearchUser,setGetSearchUser]=useState();
   const handleChange = (e) => {
     setSearchedUser(e.target.value);
   };
   // const backendapi="https://media-book-backend.vercel.app";
-  // const backendapi="http://localhost:5000";
+  const backendApi="http://localhost:5000";
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://media-book-backend.vercel.app/api/user/searchUser', {
+      const response = await fetch(`${backendApi}/api/user/searchUser`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,19 +35,22 @@ export default function Search() {
 
     const findSearchedUser = async (suserid) =>{
       console.log(suserid)
-      setSearchUser(suserid);
+      setSearchUser(1);
+      // console.log(searchUser)
       setGetSearchUser(1);
-      const response=await fetch("https://media-book-backend.vercel.app/api/user/getSearchedUser",{
+      const response=await fetch(`${backendApi}/api/user/getSearchedUser`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(searchUser),
+        body: JSON.stringify({id:suserid}),
         
       }
 
       )
-      console.log(response.json)
+      const data=await response.json();
+      // console.log(data.user)
+      setGetSearchUser(data.user)
     }
   return (
     <>
@@ -73,20 +76,20 @@ export default function Search() {
     </div>
     {(searchUser)?
     <div className='searchedUser'>
-      <h1>{searchUser}</h1>
+     
       <div className='searchProfile'>
-      <button className='cancelSearchUser' onClick={()=>{setSearchUser("")}}>❌</button>
+      <button className='cancelSearchUser' onClick={()=>{setSearchUser(0)}}>❌</button>
       <div className='searchUserBackgroundImage'>
-        <img src="" alt='not found'/>
+        <img src={getsearchUser.bgPhoto} alt='not found'/>
       </div>
       <div className='searchUserProfileContainer'>
         <div className='searchUserTopData'>
 
             <button>Connections</button>
-            <div className='searchUserProfileImg'><img src="" alt='not found'/></div>
+            <div className='searchUserProfileImg'><img src={getsearchUser.profilePhoto} alt='not found'/></div>
             <button>Follow</button>
         </div>
-      <h3></h3>
+      <h3> {getsearchUser.name}</h3>
         
       </div>
     </div>

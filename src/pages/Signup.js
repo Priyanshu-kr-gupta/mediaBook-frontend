@@ -7,7 +7,8 @@ import { Link} from 'react-router-dom'
 const Signup = () => {
     const navigate=useNavigate();
 
-
+    // const backendapi="https://media-book-backend.vercel.app";
+    const backendApi="http://localhost:5000";
 
     const [email,setEmail]= useState("")
     const [name,setName]= useState("")
@@ -38,7 +39,7 @@ const Signup = () => {
   
   const handleOtp=async ()=>{
     setLoader(true);
-        const response = await fetch("https://media-book-backend.vercel.app/api/auth/sendOtp",{
+        const response = await fetch(`${backendApi}/api/auth/sendOtp`,{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"
@@ -58,7 +59,7 @@ const Signup = () => {
     const verifyOtp=async (e)=>{
     setLoader(true);
 
-      const response = await fetch("https://media-book-backend.vercel.app/api/auth/verifyOtp",{
+      const response = await fetch(`${backendApi}/api/auth/verifyOtp`,{
           method:"POST",
           headers:{
               "Content-Type": "application/json"
@@ -88,7 +89,7 @@ const Signup = () => {
     console.log(password)
     console.log(profileImg)
     try {
-        const respon = await fetch("https://media-book-backend.vercel.app/api/auth/createUser", {
+        const respon = await fetch(`${backendApi}/api/auth/createUser`, {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json",

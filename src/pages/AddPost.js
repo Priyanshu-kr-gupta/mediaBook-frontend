@@ -2,14 +2,15 @@ import React,{useState} from 'react'
 // import noteContext from "../context/notes/noteContext";
 
 function AddPost() {
- 
+   // const backendapi="https://media-book-backend.vercel.app";
+   const backendApi="http://localhost:5000";
   const [caption,setCaption]=useState("")
   const [postImg,setPostImg]=useState("")
   const handleClick=async (e)=>{
         e.preventDefault();
      
           try {
-              const respon = await fetch("https://media-book-backend.vercel.app/api/post/addPost", {
+              const respon = await fetch(`${backendApi}/api/post/addPost`, {
                   method: "POST",
                   headers: {
                       "Content-Type": "Application/json",
