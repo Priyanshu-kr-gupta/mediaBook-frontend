@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 function Login(props) {
+const [message,setMes]=useState("Login");
     const backendapi="https://media-book-backend.vercel.app";
     //const backendApi="http://localhost:5000";
     const navigate=useNavigate();
@@ -14,6 +15,7 @@ function Login(props) {
     }
     const handleSubmit=async (e)=>{
         e.preventDefault();
+        setMes("wait");
         const {email,password} = user
         const response = await fetch(`${backendApi}/api/auth/loginUser`,{
             method:"POST",
@@ -46,7 +48,7 @@ function Login(props) {
             <input name="password" type="password" value={password}  id="password" onChange={handleChange}/>
           </div>
           <button type="submit" >
-          Log In
+          {mes}
           </button>
         </form>
         <h5>Don't have a account</h5>
