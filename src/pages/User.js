@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 export default function User() {
     const user=useParams();
   const [getsearchUser,setGetSearchUser]=useState();
-  const backendApi="https://media-book-backend.vercel.app";
-  // const backendApi="http://localhost:5000";
+  const backendApi = process.env.REACT_APP_BACKEND_API;
+
     useEffect(()=>{
         findSearchedUser();
     },[])
@@ -13,6 +13,8 @@ export default function User() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            "auth-token": localStorage.getItem("auth-token")
+
           },
           body: JSON.stringify({id:user.userId}),
           
@@ -21,19 +23,22 @@ export default function User() {
         )
         const data=await response.json();
         setGetSearchUser(data.user)
+
       }
-      const connect = async ()=>{
-        const response=await fetch(`${backendApi}/api/user/connect`,{
-          method:"POST",
-          headers:{
-            'Content-Type': 'application/json',
-            "auth-token": localStorage.getItem("auth-token")
-          },
-          body: JSON.stringify({receiver:getsearchUser.userId}),
-        })
-        const data=await response.json();
-        console.log(data)
-      }
+
+        const connect = async ()=>{
+          const response=await fetch(`${backendApi}/api/user/connect`,{
+            method:"POST",
+            headers:{
+              'Content-Type': 'application/json',
+              "auth-token": localStorage.getItem("auth-token")
+            },
+            body: JSON.stringify({receiver:getsearchUser._id}),
+          })
+          const data=await response.json();
+          console.log(data)
+        }
+
   return (
     
     <>
@@ -46,9 +51,9 @@ export default function User() {
     <div className='searchUserProfileContainer'>
       <div className='searchUserTopData'>
 
-          <button onClick={connect}>Connections</button>
+          <button>Connections</button>
           <div className='searchUserProfileImg'><img src={getsearchUser.profilePhoto} alt='not found'/></div>
-          <button>Follow</button>
+          <button onClick={connect}>Follow</button>
       </div>
     <h3> {getsearchUser.name}</h3>
       

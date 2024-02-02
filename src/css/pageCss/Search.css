@@ -10,6 +10,7 @@
     align-items: center;
     flex-direction: column;
     /* overflow-y:hidden ; */
+    transition: all ease 0.5s;
 }
 .userSearch{
     all: unset;
@@ -52,10 +53,11 @@
 }
 .userCred > img{
     width: 20%;
-    height: 50%;
+    /* height: 50%; */
+    aspect-ratio: 1/1;
     object-fit: contain ;
     border-radius: 50%;
-    background-color: rgba(113, 125, 141, 0.238);
+    background-color: rgba(224, 192, 255, 0.512);
 }
 .userBox:hover{
     background-color: rgba(143, 233, 249, 0.604);
@@ -144,26 +146,53 @@
  
 }
 
-.topData > button{
-    border-radius: 20px;
-    width: 11%;
-    padding: 12px;
-    box-shadow:  5px 5px 10px #afafaf,
-    -5px -5px 10px #ffffff;
-    background: transparent;
-    border:2px solid rgba(255, 255, 255, 0.337);
-}
-#con::after{
-    content:attr(con-count);
-    background-color: red;
-    border-radius: 50%;
-    padding: 2px;
-    position: relative;
-    bottom: 10px;
-}
+
+
 .searchUser{
     all: unset;
     background-color: rgba(178, 138, 218, 0.721);
     padding: 2px;
     cursor: pointer;
 } 
+
+#searchToggler,.searchTogglerLbl{
+    display: none;
+    position: absolute;
+ /* margin-left: 90%; */
+ right: 3%;
+    transition: all ease 0.5s;
+}
+#searchToggler:checked ~  .searchBox{
+width: 80%;
+left: 20%;
+transform: rotate(0 deg);
+
+}
+#searchToggler:checked ~  .searchTogglerLbl{
+   
+   right: 80%; 
+    transform: rotate(180deg);
+
+    }
+@media (max-width:1000px){
+    .searchBox{
+        width: 38%;
+    }
+}
+@media (max-width:850px){
+    .searchBox{
+        width: 0%;
+        overflow: hidden;
+        position: absolute;
+        top: 6vh;
+        left: 100%;
+        z-index: 3;
+        height: 80vh;
+        background-color: rgba(221, 245, 247, 0.277);
+        backdrop-filter: blur(20px);
+    }
+    .searchTogglerLbl{
+        display: block;
+    }
+
+}

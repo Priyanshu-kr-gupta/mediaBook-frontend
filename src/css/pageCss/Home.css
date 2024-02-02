@@ -47,10 +47,24 @@
     background-color: #8f8f8f;
     position:relative fixed;
     top: 0px;
+    z-index: 1;
+    position: sticky;
 }
 
 @media (max-width:1000px) {
   .homePage{
     height: 90%;
+  }
+
+}
+@media (max-width:850px){
+  .allPosts{
+    width: 90%;
+  }
+}
+@media (max-width:380px) {
+  .allPosts{
+      width: 100%;
+      /* background-color: red; */
   }
 }

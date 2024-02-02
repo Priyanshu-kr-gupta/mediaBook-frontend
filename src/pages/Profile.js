@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import "../css/pageCss/Profile.css"
 export default function Profile() {
 
-    const backendApi="https://media-book-backend.vercel.app";
-    // const backendApi="http://localhost:5000";
+  const backendApi = process.env.REACT_APP_BACKEND_API;
+
 const navigate = useNavigate()
 const [user,setUser]=useState({});
 function logout()
@@ -39,9 +39,9 @@ return (
       <div className='profileContainer'>
         <div className='topData'>
 
-            <button id='con' con-count="10">Connections</button>
+            <button id='con' con-count="10">❤️</button>
             <div className='profileImg'><img src={user.profilePhoto} alt='not found'/></div>
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout}>⚙️</button>
         </div>
       <h3>{user.name}</h3>
         

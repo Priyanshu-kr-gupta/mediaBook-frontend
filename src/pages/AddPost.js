@@ -2,8 +2,8 @@ import React,{useState} from 'react'
 // import noteContext from "../context/notes/noteContext";
 
 function AddPost() {
-   const backendApi="https://media-book-backend.vercel.app";
-  //  const backendApi="http://localhost:5000";
+  const backendApi = process.env.REACT_APP_BACKEND_API;
+
   const [caption,setCaption]=useState("")
   const [postImg,setPostImg]=useState("")
   const handleClick=async (e)=>{

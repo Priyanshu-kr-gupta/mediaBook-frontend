@@ -1,8 +1,8 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import "../css/componentCss/PostCard.css"
 function PostCard(props) {
-    const backendApi="https://media-book-backend.vercel.app";
-    // const backendApi="http://localhost:5000";
+ 
+    const backendApi = process.env.REACT_APP_BACKEND_API;
   const [postUser,setPostUser]=useState({name:"",profilePhoto:"",date:""})
   const userAuthenticate=async()=>{
     const res = await fetch(`${backendApi}/api/post/getPostUser`,{

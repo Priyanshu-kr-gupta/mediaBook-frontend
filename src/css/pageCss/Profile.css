@@ -11,7 +11,7 @@
 .backgroundImage{
     margin-top: 10px;
     width: 90%;
-    height:45%;
+    height:clamp(100px,45%,300px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,8 +44,9 @@
     /* background-color: red; */
 }
 .profileImg{
-    width:  15%;
-    height: 150px;
+    width: clamp(100px,25%,170px);
+    /* height: 150px; */
+    aspect-ratio: 1/1;
     background-size: cover;
     border-radius: 50%;
     border: 5px solid rgba(255, 255, 255, 0.773);
@@ -67,12 +68,28 @@
     -5px -5px 10px #ffffff;
     background: transparent;
     border:2px solid rgba(255, 255, 255, 0.337);
+    background-color: yellowgreen;
+    all: unset;
+    font-size: 20px;
 }
 #con::after{
     content:attr(con-count);
     background-color: red;
     border-radius: 50%;
     padding: 2px;
-    position: relative;
-    bottom: 10px;
+    position: absolute;
+    font-size: 10px;
 }
+
+/* @media (max-width:1000px)
+{
+    .profileImg{
+        width: 20%;
+    }
+}
+@media (max-width:750px)
+{
+    .profileImg{
+        width: 25%;
+    }
+} */

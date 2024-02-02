@@ -7,8 +7,8 @@ import { Link} from 'react-router-dom'
 const Signup = () => {
     const navigate=useNavigate();
 
-    const backendApi="https://media-book-backend.vercel.app";
-    // const backendApi="http://localhost:5000";
+    const backendApi = process.env.REACT_APP_BACKEND_API;
+
 
     const [email,setEmail]= useState("")
     const [name,setName]= useState("")
