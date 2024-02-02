@@ -61,14 +61,7 @@
 }
 
 .topData > button{
-    border-radius: 20px;
-    width: 11%;
-    padding: 12px;
-    box-shadow:  5px 5px 10px #afafaf,
-    -5px -5px 10px #ffffff;
-    background: transparent;
-    border:2px solid rgba(255, 255, 255, 0.337);
-    background-color: yellowgreen;
+ 
     all: unset;
     font-size: 20px;
 }
