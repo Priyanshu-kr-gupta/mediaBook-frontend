@@ -24,7 +24,7 @@ const ContextState=(props)=>{
         })
   },[socket])
     return(
-        <ContextApi.Provider value={{settingSocket,newUser}}>
+        <ContextApi.Provider value={{newUser}}>
             {props.children}
         </ContextApi.Provider>
     ) 
