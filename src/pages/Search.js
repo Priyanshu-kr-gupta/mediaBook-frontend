@@ -16,7 +16,7 @@ export default function Search() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": localStorage.getItem("auth-token")
+        "auth-token": localStorage.getItem("auth-token"),
 
       },
     });

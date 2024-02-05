@@ -13,7 +13,7 @@ const ContextState=(props)=>{
   useEffect(()=>{
     const authToken = localStorage.getItem('auth-token');
 
-    const socket = io(process.env.REACT_APP_BACKEND_API, {
+    const socket = io("http://localhost:5000", {
       auth: {
         token: authToken
       }
@@ -24,7 +24,7 @@ const ContextState=(props)=>{
         })
   },[socket])
     return(
-        <ContextApi.Provider value={{settingSocket,newUser}}>
+        <ContextApi.Provider value={{newUser}}>
             {props.children}
         </ContextApi.Provider>
     ) 

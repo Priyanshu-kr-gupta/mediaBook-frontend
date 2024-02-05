@@ -9,7 +9,7 @@ function Home() {
   // const sk = useContext(ContextState);
   // console.log(sk)
   const backendApi = process.env.REACT_APP_BACKEND_API;
-  
+  // console.log(backendApi)
   const navigate = useNavigate();
   const [post, setPost] = useState([]);
 
@@ -19,6 +19,7 @@ function Home() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+     
         },
       });
 
