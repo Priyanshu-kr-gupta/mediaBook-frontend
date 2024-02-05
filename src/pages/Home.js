@@ -1,57 +1,63 @@
-import React,{useEffect,useState} from "react";
-import {useNavigate} from "react-router-dom"
-import PostCard from "../components/PostCard"
-import "../css/pageCss/Home.css"
+import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import PostCard from "../components/PostCard";
+import "../css/pageCss/Home.css";
 import Search from "./Search";
+// import ContextState from "../context/ContextState";
 
 function Home() {
-
+  // const sk = useContext(ContextState);
+  // console.log(sk)
   const backendApi = process.env.REACT_APP_BACKEND_API;
+  
+  const navigate = useNavigate();
+  const [post, setPost] = useState([]);
 
-  const navigate = useNavigate()
-  const [post,setPost] = useState([]);
-  const getAllPosts=async ()=>{
-    const getAllPosts= await fetch(`${backendApi}/api/post/getAllPosts`,{
-      method:"POST",
-      headers:{
-        "Content-Type": "Application/json",
+  const getAllPosts = async () => {
+    try {
+      const response = await fetch(`${backendApi}/api/post/getAllPosts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      },
-    })
-    const json= await getAllPosts.json();
-    setPost(json)
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
 
-  } 
+      const json = await response.json();
+      setPost(json);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
   useEffect(() => {
-      if(localStorage.getItem("auth-token")){
+    // const fetchDataAndSetupSocket = async () => {
+      if (localStorage.getItem("auth-token")) {
          getAllPosts();
+      } else {
+        navigate("/login");
       }
-      else{
-          navigate('/login')
-      }
+    // };
+
+    // fetchDataAndSetupSocket();
+
+    // Cleanup the socket connection when the component unmounts
+    
   }, []);
+
   return (
-<div className="homePage">
-{/* <div>MediaBook 2.O</div>   */}
-
-<div className="allPosts">
-<div className="stories">
-
-</div>
-        {post.map((postData) => {
-          return (
-            <PostCard
-            key={postData._id}
-            post={postData}        
-            />
-            
-            );
-          })}
-</div>
-<Search />
-  </div> 
-     
-
+    <div className="homePage">
+      <div className="allPosts">
+      <div className="stories"></div>
+        {post.map((postData) => (
+          <PostCard key={postData._id} post={postData} />
+        ))}
+      </div>
+      <Search />
+    </div>
   );
 }
 

@@ -23,15 +23,16 @@
 }
 .connectionBox :hover{
     background-color: rgb(200, 254, 248);
+    border-radius: 5%;
 }
 .connectionuserCred{
-    width: 95%;
-    height: 95%;
+    width: 100%;
+    height: 100%;
      display: flex;
      flex-direction: column;
      justify-content: space-around;
      align-items: center;
-
+    padding-bottom: 10%;
 }
 .connectionBox .connectionuserCred  img{
     width: 50%;
@@ -39,4 +40,12 @@
     border-radius: 50%;
     object-fit: contain;
     background-color: rgb(195, 180, 247);
+}
+.onlineStatus{
+    width:  10%;
+    /* height: 5%; */
+    aspect-ratio: 1/1;
+   margin-left: 80%;
+    border-radius: 50%;
+   
 }
