@@ -13,7 +13,7 @@ const ContextState=(props)=>{
   useEffect(()=>{
     const authToken = localStorage.getItem('auth-token');
 
-    const socket = io("http://localhost:5000", {
+    const socket = io("https://media-book-backend.vercel.app", {
       auth: {
         token: authToken
       }
