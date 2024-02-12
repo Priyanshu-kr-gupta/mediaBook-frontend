@@ -9,11 +9,12 @@ import Navbar from "./components/Navbar";
 import AddPost from "./pages/AddPost";
 import User from "./pages/User";
 import Connections from "./pages/Connections";
-import ContextApi from "./context/ContextApi";
-import { io } from 'socket.io-client';
+// import ContextApi from "./context/ContextApi";
+import GlobalChat from "./pages/GlobalChat";
+// import { io } from 'socket.io-client';
 
 function App() {
-  const sk = useContext(ContextApi);
+  // const sk = useContext(ContextApi);
 
   return (
   
@@ -27,6 +28,7 @@ function App() {
           <Route path="/create" element={<AddPost />} />
           <Route path="/connections" element={<Connections />} />
           <Route path="/user/:userId" element={<User />} />
+          <Route path="/chat" element={<GlobalChat />} />
         </Routes>
         </div> 
   );

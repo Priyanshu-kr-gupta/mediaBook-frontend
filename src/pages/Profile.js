@@ -1,14 +1,19 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
 import "../css/pageCss/Profile.css"
-export default function Profile() {
+import socket from '../socket';
 
+export default function Profile() {
   const backendApi = process.env.REACT_APP_BACKEND_API;
 
 const navigate = useNavigate()
 const [user,setUser]=useState({});
 function logout()
 {
+
+    // socket.emit("logoutUser")
+  
+  
   localStorage.removeItem("auth-token");
   navigate("/login");
 

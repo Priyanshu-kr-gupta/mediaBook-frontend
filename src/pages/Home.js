@@ -3,13 +3,9 @@ import { useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import "../css/pageCss/Home.css";
 import Search from "./Search";
-// import ContextState from "../context/ContextState";
-
+import socket from '../socket';
 function Home() {
-  // const sk = useContext(ContextState);
-  // console.log(sk)
   const backendApi = process.env.REACT_APP_BACKEND_API;
-  // console.log(backendApi)
   const navigate = useNavigate();
   const [post, setPost] = useState([]);
 
@@ -35,17 +31,16 @@ function Home() {
   };
 
   useEffect(() => {
-    // const fetchDataAndSetupSocket = async () => {
       if (localStorage.getItem("auth-token")) {
          getAllPosts();
       } else {
         navigate("/login");
       }
-    // };
+      // socket.on("newUser",(data) =>{
 
-    // fetchDataAndSetupSocket();
+      // })
 
-    // Cleanup the socket connection when the component unmounts
+
     
   }, []);
 

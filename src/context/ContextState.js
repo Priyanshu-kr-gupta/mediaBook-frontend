@@ -6,25 +6,30 @@ const ContextState=(props)=>{
     
     
     const [socket, setSocket] = useState();
-  const [newUser,setNewuser] = useState('');
+  const [newUser,setNewuser] = useState([]);
 
     
-
+ 
   useEffect(()=>{
-    const authToken = localStorage.getItem('auth-token');
+   
 
-    const socket = io("https://media-book-backend.vercel.app", {
-      auth: {
-        token: authToken
-      }
-    });
+      const authToken = localStorage.getItem('auth-token');
+      
+      const socket = io("http://localhost:5000", {
+        auth: {
+          token: authToken
+        }
+      });
+      setSocket(socket);
+ 
     socket.on("newUser",(data)=>{
-      console.log(data)
+      // console.log(data)
       setNewuser(data);
         })
-  },[socket])
+    
+  },[])
     return(
-        <ContextApi.Provider value={{newUser}}>
+        <ContextApi.Provider value={{newUser,socket}}>
             {props.children}
         </ContextApi.Provider>
     ) 

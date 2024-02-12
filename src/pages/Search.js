@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/pageCss/Search.css"
+import socket from '../socket';
+
 export default function Search() {
   const [searchedUser, setSearchedUser] = useState('');
   const [users, setUsers] = useState([]);
