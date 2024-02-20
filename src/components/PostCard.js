@@ -19,6 +19,11 @@ function PostCard(props) {
           {
             setLikeStatus(true);
             setLikeCount(likeCount+1);
+            const heart = document.getElementById(props.post._id);
+            heart.style.animation="heartBeat 1s";
+            setTimeout(() => {
+              heart.style.animation = "";
+            }, 1000);
           }
           const response = await fetch(backendApi+"/api/post/likePost",{
             method:'POST',
@@ -100,6 +105,7 @@ function PostCard(props) {
               <div className='commentBox'>
 
               </div>
+              <div className="heart" id={props.post._id} >😍</div>
           </div>
           
     )
