@@ -2,7 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import "../css/pageCss/Home.css";
-import Search from "./Search";
+import Header from "../components/Header";
+
+// import Search from "./Search";
 import socket from '../socket';
 function Home() {
   const backendApi = process.env.REACT_APP_BACKEND_API;
@@ -45,15 +47,22 @@ function Home() {
   }, []);
 
   return (
+
+
+  
+
     <div className="homePage">
+    <Header />
+    <div className="allPostsContainer">
+
       <div className="allPosts">
-      <div className="stories"></div>
         {post.map((postData) => (
           <PostCard key={postData._id} post={postData} />
-        ))}
+          ))}
       </div>
-      <Search />
-    </div>
+          <div className="stories"></div>
+      </div>
+          </div>
   );
 }
 

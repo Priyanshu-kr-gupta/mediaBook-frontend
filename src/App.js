@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import AddPost from "./pages/AddPost";
 import User from "./pages/User";
+import Search  from "./pages/Search";
 import Connections from "./pages/Connections";
 // import ContextApi from "./context/ContextApi";
 import GlobalChat from "./pages/GlobalChat";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/create" element={<AddPost />} />
           <Route path="/connections" element={<Connections />} />
           <Route path="/user/:userId" element={<User />} />

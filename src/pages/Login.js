@@ -27,6 +27,7 @@ const backendApi = process.env.REACT_APP_BACKEND_API;
         const json=await response.json()
         if(json.login){
             localStorage.setItem("auth-token",json.authToken)
+            localStorage.setItem("userid",json.user_Id)
             // alert(json.msg); 
             navigate("/")
         }

@@ -3,7 +3,7 @@
     padding: 0;
 }
 nav{
-    width: 10%;
+    width: 5%;
     height: 100%;
     /* background-color: rgb(91, 3, 111); */
     /* background-color:   #DDE1E7; */
@@ -21,7 +21,7 @@ nav{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* align-items:center; */
+    align-items:center;
     
 }
 .navMenu a{
@@ -29,7 +29,7 @@ nav{
     cursor: pointer;
     width: auto;
     /* background-color: white; */
-    /* border-radius: 20%; */
+    border-radius: 50%;
     
     display: flex;
     align-items: center;
@@ -50,7 +50,8 @@ nav{
         height: 30px;  
     border-radius: 50%;
         /* background: transparent; */
-        /* mix-blend-mode: color-burn; */
+        /* mix-blend-mode:luminosity; */
+
 
     }
 @media (max-width:1000px) {

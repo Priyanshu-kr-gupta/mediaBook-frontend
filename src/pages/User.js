@@ -29,6 +29,7 @@ export default function User() {
       }
 
         const connect = async ()=>{
+          socket.emit("connectionRequest",getsearchUser._id)
           const response=await fetch(`${backendApi}/api/user/connect`,{
             method:"POST",
             headers:{
@@ -38,7 +39,6 @@ export default function User() {
             body: JSON.stringify({receiver:getsearchUser._id}),
           })
           const data=await response.json();
-          console.log(data)
         }
 
   return (

@@ -56,6 +56,7 @@ export default function Search() {
 
   const acceptRequest = async (reqid)=>
   {
+    socket.emit("acceptConnectionRequest",reqid)    
     const response = await fetch(`${backendApi}/api/user/acceptRequest`,{
       method: 'POST',
       headers: {
@@ -66,8 +67,7 @@ export default function Search() {
       body: JSON.stringify({ reqid })
     });
     const json =await response.json();
-    console.log(json)
-    
+  
   }
   return (
     <>

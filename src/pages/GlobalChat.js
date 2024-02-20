@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "../css/pageCss/GlobalChat.css"
 import socket from '../socket'
+import Header from '../components/Header';
 export default function GlobalChat() {
     const [allMessage,setAllMessage]=useState([]);
     const [message,setMessage]=useState('');
@@ -49,6 +50,7 @@ export default function GlobalChat() {
   return (
     <>
     <div className='globalChatContainer'>
+    {/* <Header /> */}
         <div className='globalChats'>
             <div className='Allchats'>
                 {
@@ -56,18 +58,17 @@ export default function GlobalChat() {
                         return <div key={index}>{msgs.msg}</div>
                     })
                 }
+                 <div className='typingUsers'></div>
             </div>
-            <div className='typingUsers'>
-
-            </div>
-        </div>
+           
+      
         <div className='typeChat'>
-            <input type='text' onChange={(e)=>{setMessage(e.target.value)}} value={message}/>
+            <textarea type='text' onChange={(e)=>{setMessage(e.target.value)}} value={message} rows={1}/>
             <button onClick={sendMessage}>send</button>
         </div>
+    </div>
 
     </div>
-    {/* <div className='newUser'> {newUser} joined the chat</div> */}
     {newUser && (
                 <div className='newUser'>
                     <img src={newUser.profilePhoto}/><br/>
