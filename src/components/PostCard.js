@@ -1,7 +1,8 @@
 import React,{useEffect,useState,useContext} from 'react'
 import "../css/componentCss/PostCard.css"
+import socket from "../socket"
 function PostCard(props) {
- 
+ const user=localStorage.getItem("userid");
     const backendApi = process.env.REACT_APP_BACKEND_API;
   const [postUser,setPostUser]=useState({name:"",profilePhoto:"",date:""})
   const [likeCount, setLikeCount] = useState(0);
@@ -14,11 +15,13 @@ function PostCard(props) {
           {
             setLikeStatus(false);
             setLikeCount(likeCount-1);
+            socket.emit("likeUpdate",props.post._id,-1)
           }
           else
           {
             setLikeStatus(true);
             setLikeCount(likeCount+1);
+            socket.emit("likeUpdate",props.post._id,1)
             const heart = document.getElementById(props.post._id);
             heart.style.animation="heartBeat 1s";
             setTimeout(() => {
@@ -81,6 +84,12 @@ function PostCard(props) {
     userAuthenticate()
     getLikeCount()
   },[])
+  useEffect(()=>{
+    socket.on("likeUpdate",(postId,update,uid)=>{
+      if(postId===props.post._id && uid!=user)
+        setLikeCount(likeCount+update);
+  })
+  })
     return (
         <div className='postCard'>
               
@@ -94,18 +103,19 @@ function PostCard(props) {
                     <p>{props.post.caption}</p>
                     <div className='postImg' style={{backgroundImage:`url(${props.post.postImg})`}} onDoubleClick={handleLikes}>
                       <img src={props.post.postImg} alt='not found'/>
+              <div className="heart" id={props.post._id} onDoubleClick={handleLikes}>🤍</div>
+
                     </div>
               </div>
               
               <div className='likeComment'> 
-                  <button onClick={handleLikes} style={{background:status?"red":""}}>Like{likeCount}</button>
-                  <button>Comment</button>
+                  <button onClick={handleLikes} >{status?"❤️":"🤍"}{likeCount} Likes</button>
+                  <button >🗨️ Comment</button>
               </div>
               
               <div className='commentBox'>
 
               </div>
-              <div className="heart" id={props.post._id} >😍</div>
           </div>
           
     )
