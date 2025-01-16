@@ -5,7 +5,6 @@ import "../css/pageCss/Home.css";
 import Header from "../components/Header";
 
 // import Search from "./Search";
-import socket from '../socket';
 function Home() {
   const backendApi = process.env.REACT_APP_BACKEND_API;
   const navigate = useNavigate();
@@ -60,7 +59,9 @@ function Home() {
           <PostCard key={postData._id} post={postData} />
           ))}
       </div>
-          <div className="stories"></div>
+          <div className="stories">
+            JGHJ
+          </div>
       </div>
           </div>
   );

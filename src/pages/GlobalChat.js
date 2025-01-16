@@ -42,7 +42,7 @@ export default function GlobalChat() {
     },[])
     const sendMessage = ()=>{
       
-        console.log(allMessage)
+        setAllMessage(prevallMessages => [...prevallMessages, message]);
 
         socket.emit("sendMessage","globalChatRoom",message);
         setMessage("");

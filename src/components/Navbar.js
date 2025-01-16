@@ -1,13 +1,17 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import {Link,useLocation } from "react-router-dom"
 import "../css/componentCss/Navbar.css"
-import homeIcon from "../icons/home.svg"
-import searchIcon from "../icons/search.svg"
-import messageIcon from "../icons/message.svg"
-import addIcon from "../icons/add.svg"
-import profileIcon from "../icons/profile.svg"
-
+import { AiOutlineMessage } from "react-icons/ai";
+import { RiImageAddLine } from "react-icons/ri";
+// import profileIcon from "../icons/profile.svg"
+import { GiHamburgerMenu } from "react-icons/gi";
+// import { IoIosSearch} from "react-icons/io";
+import { MdOutlinePersonAddAlt } from "react-icons/md";
+import { AiOutlineHome } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
 function Navbar() {
+  const [tgle,setTgle]=useState(0)
+  
   let location=useLocation();
   useEffect(()=>{
     // console.log(location)
@@ -16,13 +20,17 @@ function Navbar() {
     <>
     
     <nav>
-    <div className='navMenu'>
-      {/* <h4>MediaBook 2.O</h4> */}
-    <Link to="/" ><img src={homeIcon} alt='not found'     style={{filter:(location.pathname==="/") ? "drop-shadow(0px 0px 10px aqua)" : ""} }/></Link>
-    <Link to="/search"  ><img src={searchIcon} alt='not found' style={{filter:(location.pathname==="/search") ? "drop-shadow(0px 0px 10px aqua)" : ""} }/></Link>
-    <Link to="/connections" ><img src={messageIcon} alt='not found' style={{filter:(location.pathname==="/connections") ? "drop-shadow(0px 0px 10px aqua)" : ""} }/></Link>
-    <Link to="/create"  ><img src={addIcon} alt='not found' style={{filter:(location.pathname==="/create") ? "drop-shadow(0px 0px 10px aqua)" : ""} }/></Link>
-    <Link to="/profile"  ><img src={profileIcon} alt='not found' style={{filter:(location.pathname==="/profile") ? "drop-shadow(0px 0px 10px aqua)" : ""} }/></Link>
+      <div className='toggler'>
+
+    <GiHamburgerMenu onClick={()=>{setTgle(!tgle)}}/>
+      </div>
+    <div id='navMenu' style={{width:(!tgle)?"100%":"0%"}}>
+      
+    <Link to="/" ><AiOutlineHome  style={{color:(location.pathname==="/") ? "black" : ""} }/></Link>
+    <Link to="/search"  ><MdOutlinePersonAddAlt  style={{color:(location.pathname==="/search") ? "black" : ""} }/></Link>
+    <Link to="/connections" ><AiOutlineMessage  style={{color:(location.pathname==="/connections") ? "black" : ""} }/></Link>
+    <Link to="/create"  ><RiImageAddLine  style={{color:(location.pathname==="/create") ? "black" : ""} }/></Link>
+    <Link to="/profile"  ><CgProfile  style={{color:(location.pathname==="/profile") ? "black" : ""} }/></Link>
     </div>
     </nav> 
     </>

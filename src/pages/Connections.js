@@ -1,9 +1,11 @@
 import React, { useEffect, useState ,useContext} from 'react'
 import "../css/pageCss/Connection.css"
-import socket from '../socket';
+
+import {initializeSocket} from '../socket';
+
 import {Link} from "react-router-dom"
 export default function Connections() {
-
+const socket=initializeSocket()
 
 
 

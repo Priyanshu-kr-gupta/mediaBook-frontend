@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import "../css/componentCss/Header.css"
 import NotificationBox from './NotificationBox';
-import socket from '../socket';
+import {initializeSocket} from '../socket';
 
 export default function Header() {
+  const socket =initializeSocket();
+
   const [noti,setNoti]=useState(false);
   const [notificationCount,setNotificationCount]=useState("0");
   const backendApi = process.env.REACT_APP_BACKEND_API;
+  const userId=localStorage.getItem("userid");
   
   const getNotificationCnt=async()=>{
     const res = await fetch(`${backendApi}/api/user/getNotificationsCnt`,{
@@ -26,9 +29,9 @@ export default function Header() {
 }
   useEffect(()=>{
     getNotificationCnt();
-    socket.on("newNotification",(data)=>{
-      // console.log(data);
-      getNotificationCnt();
+    socket.on("newNotification",(recData,senderData)=>{
+        if(userId===recData && senderData!=userId)
+            getNotificationCnt();
   })
   },[])
   return (

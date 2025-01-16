@@ -10,9 +10,8 @@ import AddPost from "./pages/AddPost";
 import User from "./pages/User";
 import Search  from "./pages/Search";
 import Connections from "./pages/Connections";
-// import ContextApi from "./context/ContextApi";
 import GlobalChat from "./pages/GlobalChat";
-// import { io } from 'socket.io-client';
+import Post from "./pages/Post";
 
 function App() {
   // const sk = useContext(ContextApi);
@@ -30,6 +29,7 @@ function App() {
           <Route path="/create" element={<AddPost />} />
           <Route path="/connections" element={<Connections />} />
           <Route path="/user/:userId" element={<User />} />
+          <Route path="/post/:postid" element={<Post />} />
           <Route path="/chat" element={<GlobalChat />} />
         </Routes>
         </div> 

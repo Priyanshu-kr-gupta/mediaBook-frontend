@@ -1,11 +1,16 @@
 import React,{useEffect,useState,useContext} from 'react'
 import "../css/componentCss/PostCard.css"
-import socket from "../socket"
+import {initializeSocket} from '../socket';
+
+import {Link} from "react-router-dom"
 function PostCard(props) {
+  const socket =initializeSocket();
+
  const user=localStorage.getItem("userid");
     const backendApi = process.env.REACT_APP_BACKEND_API;
-  const [postUser,setPostUser]=useState({name:"",profilePhoto:"",date:""})
+  const [postUser,setPostUser]=useState({id:"",name:"",profilePhoto:"",date:""})
   const [likeCount, setLikeCount] = useState(0);
+  const [CommentCount, setCommentCount] = useState(0);
       const [status, setLikeStatus] = useState(false);
       const userId=localStorage.getItem("userid")
 
@@ -15,13 +20,13 @@ function PostCard(props) {
           {
             setLikeStatus(false);
             setLikeCount(likeCount-1);
-            socket.emit("likeUpdate",props.post._id,-1)
+            socket.emit("likeUpdate",props.post._id,-1,postUser.id)
           }
           else
           {
             setLikeStatus(true);
             setLikeCount(likeCount+1);
-            socket.emit("likeUpdate",props.post._id,1)
+            socket.emit("likeUpdate",props.post._id,1,postUser.id)
             const heart = document.getElementById(props.post._id);
             heart.style.animation="heartBeat 1s";
             setTimeout(() => {
@@ -65,7 +70,22 @@ function PostCard(props) {
             console.error('Error getting like count:', error);
         }
     };
+    const getCommentCount = async () => {
+      try {
+          const response = await fetch(backendApi+`/api/post/getCommentsCount/${props.post._id}`,{
+            method:'POST',
+            headers:{
+              "Content-Type": "application/json"
+            },
 
+          })
+          const json=await response.json()
+          const data=json.CommentCount
+          setCommentCount(data);
+      } catch (error) {
+          console.error('Error getting like count:', error);
+      }
+  };
   const userAuthenticate=async()=>{
     const res = await fetch(`${backendApi}/api/post/getPostUser`,{
       method:'POST',
@@ -77,20 +97,26 @@ function PostCard(props) {
   // const response= await res.json()
   const json=await res.json()
  
-    setPostUser({name:json.name,profilePhoto:json.profilePhoto,date:json.date})
+    setPostUser({id:json._id,name:json.name,profilePhoto:json.profilePhoto,date:json.date})
     // console.log(json.user)
 }
+
+
+
   useEffect(()=>{
     userAuthenticate()
     getLikeCount()
+    getCommentCount()
   },[])
   useEffect(()=>{
     socket.on("likeUpdate",(postId,update,uid)=>{
-      if(postId===props.post._id && uid!=user)
+  
+      if(postId===props.post._id && uid!==userId)
         setLikeCount(likeCount+update);
   })
-  })
+  },[])
     return (
+      
         <div className='postCard'>
               
               <div className='userDetails'>
@@ -100,9 +126,10 @@ function PostCard(props) {
               </div>
 
               <div className='userPost'>
-                    <p>{props.post.caption}</p>
+                  
+                  <p>{props.post.caption.slice(0,30)+"..."}</p>
                     <div className='postImg' style={{backgroundImage:`url(${props.post.postImg})`}} onDoubleClick={handleLikes}>
-                      <img src={props.post.postImg} alt='not found'/>
+                        <img src={props.post.postImg} alt='not found'/>
               <div className="heart" id={props.post._id} onDoubleClick={handleLikes}>🤍</div>
 
                     </div>
@@ -110,12 +137,14 @@ function PostCard(props) {
               
               <div className='likeComment'> 
                   <button onClick={handleLikes} >{status?"❤️":"🤍"}{likeCount} Likes</button>
-                  <button >🗨️ Comment</button>
-              </div>
-              
-              <div className='commentBox'>
+                  {/* <button onClick={openComments}>🗨️ Comment</button> */}
+                  <Link to={`/post/${props.post._id}`} >🗨️ {CommentCount} Comment</Link>
 
               </div>
+              
+              {/* <div className='commentBox' id='cmntBox'>
+                    
+              </div> */}
           </div>
           
     )

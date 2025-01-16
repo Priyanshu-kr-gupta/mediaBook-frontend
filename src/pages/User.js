@@ -1,8 +1,10 @@
 import React, { useEffect,useState } from 'react'
 import { useParams } from 'react-router-dom';
-import socket from '../socket';
+
+import {initializeSocket} from '../socket';
 
 export default function User() {
+  const socket=initializeSocket();
     const user=useParams();
   const [getsearchUser,setGetSearchUser]=useState();
   const backendApi = process.env.REACT_APP_BACKEND_API;

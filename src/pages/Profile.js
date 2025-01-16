@@ -1,17 +1,46 @@
 import React,{useEffect,useState,useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
 import "../css/pageCss/Profile.css"
-import socket from '../socket';
+
+import {initializeSocket} from '../socket';
+
 
 export default function Profile() {
+  const socket=initializeSocket()
   const backendApi = process.env.REACT_APP_BACKEND_API;
 
 const navigate = useNavigate()
 const [user,setUser]=useState({});
+const userid=localStorage.getItem("userid");
+const [userpost, setUserpost] = useState([]);
+
+const getUserPosts = async () => {
+  try {
+    const response = await fetch(`${backendApi}/api/post/getUserPosts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+   
+      },
+      body:JSON.stringify({userid})
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+
+    const json = await response.json();
+    setUserpost(json);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+};
+
 function logout()
 {
 
-    // socket.emit("logoutUser")
+    
+    socket.emit("logoutuser")
   
   
   localStorage.removeItem("auth-token");
@@ -23,14 +52,16 @@ const getUser =async ()=>{
     method:"POST",
     headers:{
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("auth-token")
+        "auth-token": localStorage.getItem("auth-token")  
     },
 })
 const json=await response.json()
 setUser(json);
 }
 useEffect(()=>{
+  
  getUser();
+ getUserPosts();
   if(!localStorage.getItem("auth-token"))
     navigate("/login");
 },[])
@@ -44,12 +75,33 @@ return (
       <div className='profileContainer'>
         <div className='topData'>
 
-            <button id='con' con-count="10">❤️</button>
+            {/* <button id='con' con-count="1 ">❤️</button> */}
+            <div>
+                <p>{user.name}</p>
+                <br/>
+                <button onClick={logout}>⚙️</button>
+            </div>
             <div className='profileImg'><img src={user.profilePhoto} alt='not found'/></div>
-            <button onClick={logout}>⚙️</button>
+            
         </div>
-      <h3>{user.name}</h3>
         
+          <h6 style={{position:"Relative",left:"-40%"}}>Your Posts</h6>
+          
+          <br/><br/>
+        <div className='usersPost'>
+          {
+            (userpost.length)
+            ?
+        userpost.map((postData) => (
+          <div style={{backgroundImage:postData.postImg}} key={postData._id}>
+              <img src={postData.postImg} alt=''/>  
+          </div>
+
+          ))
+          :
+          <p>no post to display</p>
+          }
+        </div>
       </div>
     </div>
     

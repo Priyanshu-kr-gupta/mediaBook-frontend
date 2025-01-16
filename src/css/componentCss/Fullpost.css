@@ -1,6 +1,6 @@
-.postCard{
+.fullpostCard{
     width: clamp(300px,60%,450px);
-    height: 90%;
+    height: auto;
     margin: 10px;
 position: relative;
     /* background-color: rgba(220, 219, 219, 0.548); */
@@ -15,12 +15,13 @@ position: relative;
     border-radius: 2px;
     scroll-snap-align: center;
     margin-bottom: 20px;
-      /* box-shadow:  5px 5px 10px #bebdbd,
-    -5px -5px 10px #ffffff; */
     user-select: none;
 
+      /* box-shadow:  5px 5px 10px #bebdbd,
+    -5px -5px 10px #ffffff; */
+
 }
-.userDetails
+.fullpostuserDetails
 {
     background-color: #ffffff;
     width: 90%;
@@ -30,69 +31,72 @@ position: relative;
     align-items: center;
     padding: 2% 5% 2% 5%;
     overflow: hidden;
-   
+   margin-top: 20px;
+   margin-bottom: 10px;
 }
-.userDetails img{
+.fullpostuserDetails img{
     /* height:100%; */
     width: 50px;
     aspect-ratio: 1/1;
     border-radius: 50%;
     object-fit: contain;
-    background-color: black;
+    background-color: rgb(51, 51, 51);
 }
-.userPost{
+.fullpostuserPost{
     width: 90%;
-    height: 70%;
+    height: auto;
     background-color: rgb(255, 255, 255);
    
 
 }
-.userPost p{
+.fullpostuserPost p{
     width: 100%;
-    height: 10%;
+    height: auto;
+    margin-bottom: 20px;
     font-family:Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
     background-color: #ffffff;
 }
-.postImg{
+.fullpostpostImg{
     width: 100%;
-    height: 90%;
+    height: 300px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     position: relative;
- 
+    margin-bottom: 20px;
 }
-.userPost  img{
+.fullpostuserPost  img{
     width: 100%;
     height: 100%;
     object-fit: contain;
     backdrop-filter: blur(10px);
 }
-.likeComment{
+.fullpostlikeComment{
     width: 90%;
     height: 10%;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     background-color: white;
 }
-.likeComment button{
+.fullpostlikeComment button{
   all:unset;
   cursor: pointer;
 }
-.likeComment a{
+.fullpostlikeComment a{
   all:unset;
   cursor: pointer;
 }
 @media (max-width:1000px) {
-    .postCard{
+    .fullpostCard{
         width: 65%;
     }
   }
   @media (max-width:850px) {
-    .postCard{
+    .fullpostCard{
         width: clamp(200px,90%,400px);
     }
   }

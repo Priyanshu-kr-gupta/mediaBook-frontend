@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/pageCss/Search.css"
-import socket from '../socket';
+import {initializeSocket} from '../socket';
+
 
 export default function Search() {
+  const socket=initializeSocket()
   const [searchedUser, setSearchedUser] = useState('');
   const [users, setUsers] = useState([]);
   const [requests,setRequests]=useState([]);
   const handleChange = (e) => {
-    setSearchedUser(e.target.value);
+   
+      setSearchedUser(e.target.value);
+
+
   };
   const backendApi = process.env.REACT_APP_BACKEND_API;
 
@@ -24,9 +29,7 @@ export default function Search() {
     });
     const json = await response.json();
 
-    // setRequests(json.connect.map(fetchRequestsdetails));
     setRequests(json.requestsUserDetails)
-    // console.log(requests)
  
   };
   useEffect(() => {
@@ -39,18 +42,16 @@ export default function Search() {
         body: JSON.stringify({ searchedUser }),
       });
       const json = await response.json();
-      // setUsers(json);
       setUsers(json.user);
 
    
     };
 
-    // Call the fetch function only if searchedUser is not an empty string
 
       fetchData();
       fetchRequests();
 
-  }, [searchedUser]); // Run the effect whenever searchedUser changes
+  }, [searchedUser]); 
 
    
 

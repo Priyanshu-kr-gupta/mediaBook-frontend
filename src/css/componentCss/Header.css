@@ -4,7 +4,9 @@
   }
   
   .header {
-    width: 90%;
+    width: 95%;
+    padding-right: 5%;
+    /* background: #000; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,6 +36,12 @@
   }
   
 
-  
+  @media (max-width:1000px) {
+    .header {
+      width: 90%;
+      padding-right: 0%;
+   
+    }
+}
 
   

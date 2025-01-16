@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link} from 'react-router-dom'
-
+import {initializeSocket} from '../socket';
 
 
 const Signup = () => {
@@ -100,6 +100,7 @@ const Signup = () => {
             console.log(result);
         if(result.signup){
               localStorage.setItem("auth-token",result.authToken)
+              initializeSocket();
               navigate("/")
               console.log(result.msg)
               alert(result.msg,"success")
